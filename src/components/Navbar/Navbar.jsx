@@ -5,7 +5,7 @@ function Navbar() {
   const {theme, toggleTheme} = useThemeHandler()
 
   return (
-    <nav className="navbar">
+    <nav className='navbar'>
       <div className='add-button'>
         <button 
           className='add-queue-button'
@@ -19,7 +19,7 @@ function Navbar() {
         <input 
           onClick={toggleTheme}
           type='checkbox' 
-          className={theme === 'dark' ? 'toggle-switch-checkbox' : 'toggle-switch-checkbox light'}
+          className='toggle-switch-checkbox'
           id='theme-toggle' 
           name='theme-toggle'
           defaultChecked={theme === 'dark'}

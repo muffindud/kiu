@@ -8,6 +8,7 @@ const ThemeHandlerProvider = ({ children }) => {
   const toggleTheme = () => {
     localStorage.setItem("theme", theme === "dark" ? "light" : "dark");
     setTheme(localStorage.getItem("theme"));
+    document.body.style.backgroundColor = localStorage.getItem("theme") === "dark" ? "#444" : "#ffffff";
   }
 
   useLayoutEffect(() => {
