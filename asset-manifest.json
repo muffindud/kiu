@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/muffindud.github.io/kiu/static/css/main.8d43ab3c.css",
+    "main.js": "/muffindud.github.io/kiu/static/js/main.4b8af743.js",
+    "index.html": "/muffindud.github.io/kiu/index.html",
+    "main.8d43ab3c.css.map": "/muffindud.github.io/kiu/static/css/main.8d43ab3c.css.map",
+    "main.4b8af743.js.map": "/muffindud.github.io/kiu/static/js/main.4b8af743.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8d43ab3c.css",
+    "static/js/main.4b8af743.js"
+  ]
+}
