@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/kiu/static/css/main.4eec3c88.css",
-    "main.js": "/kiu/static/js/main.c5e545fe.js",
+    "main.css": "/kiu/static/css/main.5fd99d16.css",
+    "main.js": "/kiu/static/js/main.c5294242.js",
     "index.html": "/kiu/index.html",
-    "main.4eec3c88.css.map": "/kiu/static/css/main.4eec3c88.css.map",
-    "main.c5e545fe.js.map": "/kiu/static/js/main.c5e545fe.js.map"
+    "main.5fd99d16.css.map": "/kiu/static/css/main.5fd99d16.css.map",
+    "main.c5294242.js.map": "/kiu/static/js/main.c5294242.js.map"
   },
   "entrypoints": [
-    "static/css/main.4eec3c88.css",
-    "static/js/main.c5e545fe.js"
+    "static/css/main.5fd99d16.css",
+    "static/js/main.c5294242.js"
   ]
 }
