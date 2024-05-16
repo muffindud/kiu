@@ -1,24 +1,20 @@
 import { useState } from 'react';
 import './AddQueueForm.css'
 
-function AddQueueForm({ setFormState }) {
+function AddQueueForm({ setFormState, handleAddQueue }) {
   const [queueData, setQueueData] = useState({
     name: '',
     description: '',
     queue_list: []
   });
 
-  const handleCreateQueue = () => {
-    return () => {
-      console.log(queueData);
-      setFormState(false);
-    }
-  }
-
   return (
     <div className='add-queue-form-container'>
       <div className='form-window'>
-        <form>
+        <form
+          className='add-queue-form'
+          onSubmit={() => {handleAddQueue(queueData); setFormState(false)}}
+        >
           <div className='form-queue-name'>
             <label>
               Queue Name
@@ -26,9 +22,9 @@ function AddQueueForm({ setFormState }) {
             <br/>
             <input
               type='text'
+              required
               value={queueData.name}
               onChange={(e) => setQueueData({...queueData, name: e.target.value})}
-              required
             />
           </div>
 
@@ -51,8 +47,7 @@ function AddQueueForm({ setFormState }) {
               Cancel
             </button>
             <button 
-              type='button'
-              onClick={handleCreateQueue()}
+              type='submit'
             >
               Create
             </button>
