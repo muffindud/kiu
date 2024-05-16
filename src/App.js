@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
-import { ThemeHandlerProvider } from './components/ThemeHandler/ThemeHandler';
+import QueueList from './components/QueueList/QueueList';
 import AddQueueForm from './components/AddQueueForm/AddQueueForm';
+
+import { ThemeHandlerProvider } from './components/ThemeHandler/ThemeHandler';
 
 function App() {
   document.body.style.backgroundColor = localStorage.getItem("theme") === "dark" ? "#444" : "#ffffff";
@@ -27,6 +29,8 @@ function App() {
       <Navbar 
         setFormState={setFormState}
       />
+      <QueueList 
+        queues={queues}/>
       {formState && <AddQueueForm 
         setFormState={setFormState}
         handleAddQueue={handleAddQueue}
