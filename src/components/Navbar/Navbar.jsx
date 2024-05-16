@@ -3,6 +3,15 @@ import './Navbar.css';
 function Navbar() {
   return (
     <nav className="navbar">
+      <div className='add-button'>
+        <button 
+          className='add-queue-button'
+          onClick={() => {console.log('Add Queue Button Clicked!')}}
+        >
+          +
+        </button>
+      </div>
+
       <div className='toggle-switch'>
         <input 
           type='checkbox' 
