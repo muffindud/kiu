@@ -1,0 +1,86 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+body.light-theme .navbar {
+    background-color: #eee;
+    color: #fff;
+}
+
+body.dark-theme .navbar {
+    background-color: #333;
+    color: #fff;
+}
+
+.add-queue-button {
+    background-color: transparent;
+    aspect-ratio: 1/1;
+    width: 32px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 24px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+body.light-theme .add-queue-button {
+    color: #333;
+}
+
+body.dark-theme .add-queue-button {
+    color: #fff;
+}
+
+.add-queue-button:hover {
+    background-color: #555;
+}
+
+body.light-theme .add-queue-button:hover {
+    color: #fff;
+}
+
+body.dark-theme .add-queue-button:hover {
+    color: #333;
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    text-align: left;
+    margin: 10px;
+    right: 0;
+}
+
+.toggle-switch-checkbox {
+    display: none;
+}
+
+.toggle-switch-label {
+    display: block;
+    width: 40px;
+    height: 20px;
+    background-color: #ccc;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+.toggle-switch-inner {
+    display: block;
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    background-color: #fff;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.3s;
+}
+
+.toggle-switch-checkbox:checked + .toggle-switch-label .toggle-switch-inner {
+    left: 22px;
+}
