@@ -1,12 +1,19 @@
 import { useState } from 'react';
 import './AddQueueForm.css'
 
-function AddQueueForm({ onSubmit, onCancel}) {
+function AddQueueForm({ setFormState }) {
   const [queueData, setQueueData] = useState({
     name: '',
     description: '',
     queue_list: []
   });
+
+  const handleCreateQueue = () => {
+    return () => {
+      console.log(queueData);
+      setFormState(false);
+    }
+  }
 
   return (
     <div className='add-queue-form-container'>
@@ -39,13 +46,13 @@ function AddQueueForm({ onSubmit, onCancel}) {
           <div className='form-buttons'>
             <button 
               type='button'
-              onClick={() => onCancel()}
+              onClick={() => setFormState(false)}
             >
               Cancel
             </button>
             <button 
               type='button'
-              onClick={() => onSubmit(queueData)}
+              onClick={handleCreateQueue()}
             >
               Create
             </button>

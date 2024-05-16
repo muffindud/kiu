@@ -1,7 +1,7 @@
 import './Navbar.css';
 import { useThemeHandler } from '../ThemeHandler/ThemeHandler';
 
-function Navbar() {
+function Navbar({ setFormState }) {
   const {theme, toggleTheme} = useThemeHandler()
 
   return (
@@ -9,7 +9,7 @@ function Navbar() {
       <div className='add-button'>
         <button 
           className='add-queue-button'
-          onClick={() => {console.log('Add Queue Button Clicked!')}}
+          onClick={() => setFormState(true)}
         >
           +
         </button>
