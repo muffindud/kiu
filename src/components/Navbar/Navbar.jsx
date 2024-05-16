@@ -1,6 +1,9 @@
 import './Navbar.css';
+import { useThemeHandler } from '../ThemeHandler/ThemeHandler';
 
 function Navbar() {
+  const {theme, toggleTheme} = useThemeHandler()
+
   return (
     <nav className="navbar">
       <div className='add-button'>
@@ -14,10 +17,12 @@ function Navbar() {
 
       <div className='toggle-switch'>
         <input 
+          onClick={toggleTheme}
           type='checkbox' 
-          className='toggle-switch-checkbox'
+          className={theme === 'dark' ? 'toggle-switch-checkbox' : 'toggle-switch-checkbox light'}
           id='theme-toggle' 
           name='theme-toggle'
+          defaultChecked={theme === 'dark'}
         />
         <label 
           htmlFor='theme-toggle' 

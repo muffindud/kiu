@@ -1,11 +1,13 @@
 import React from 'react';
 import Navbar from './components/Navbar/Navbar';
 
+import { ThemeHandlerProvider } from './components/ThemeHandler/ThemeHandler';
+
 function App() {
   return (
-    <div>
+    <ThemeHandlerProvider>
       <Navbar />
-    </div>
+    </ThemeHandlerProvider>
   );
 }
 
