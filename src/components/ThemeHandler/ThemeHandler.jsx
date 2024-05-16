@@ -13,6 +13,7 @@ const ThemeHandlerProvider = ({ children }) => {
 
   useLayoutEffect(() => {
     localStorage.setItem("theme", theme);
+    document.body.style.backgroundColor = localStorage.getItem("theme") === "dark" ? "#444" : "#ffffff";
 
     if (theme === "dark") {
       document.body.classList.add("dark-theme");
