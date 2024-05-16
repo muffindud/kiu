@@ -47,7 +47,7 @@ function AddQueueForm({ onSubmit, onCancel}) {
               type='button'
               onClick={() => onSubmit(queueData)}
             >
-              Create Queue
+              Create
             </button>
           </div>
         </form>

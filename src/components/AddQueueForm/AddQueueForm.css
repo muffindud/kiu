@@ -13,7 +13,7 @@
 
 .form-window {
     position: relative;
-    padding: 20px;
+    padding: 15px;
     border-radius: 5px;
     box-shadow: 0 0 10px 0 #00000080;
 
@@ -34,12 +34,47 @@ body.dark-theme .form-window {
     margin-bottom: 10px;
 }
 
+.form-queue-name input {
+    width: 100%;
+}
+
 .form-description {
     width: 100%;
     margin-bottom: 10px;
 }
 
+.form-description textarea {
+    resize: none;
+    width: 100%;
+}
+
 .form-buttons {
     display: flex;
     justify-content: space-between;
+}
+
+.form-buttons button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+body.light-theme .form-buttons button {
+    color: #333;
+}
+
+body.dark-theme .form-buttons button {
+    color: #fff;
+}
+
+body.light-theme .form-buttons button:hover {
+    color: #fff;
+    background-color: #555;
+}
+
+body.dark-theme .form-buttons button:hover {
+    color: #555;
+    background-color: #fff;
 }
