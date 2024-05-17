@@ -2,11 +2,15 @@ import React from 'react';
 import './QueueList.css'
 import Queue from '../Queue/Queue';
 
-function QueueList({ queues }) {
+function QueueList({ queues, queueId, setQueueId }) {
   return (
     <div className='queue-list-container'>
-      {queues.map((queue, index) => (
-        <Queue queue={queue}/>
+      {Object.keys(queues).map((id) => (
+        <Queue 
+          queue={queues[id]}
+          queueId={queueId}
+          setQueueId={setQueueId}
+        />
       ))}
     </div>
   );

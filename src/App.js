@@ -9,7 +9,8 @@ function App() {
   document.body.style.backgroundColor = localStorage.getItem("theme") === "dark" ? "#444" : "#ffffff";
 
   const [formState, setFormState] = useState(false);
-  const [queues, setQueues] = useState([]);
+  const [queues, setQueues] = useState({});
+  const [queueId, setQueueId] = useState(localStorage.getItem('queueId') ? parseInt(localStorage.getItem('queueId')) : 0);
 
   useEffect(() => {
     const savedQueues = JSON.parse(localStorage.getItem('queues'));
@@ -19,9 +20,11 @@ function App() {
   }, []);
 
   const handleAddQueue = (queue) => {
-    const newQueues = [...queues, queue];
-    setQueues(newQueues);
-    localStorage.setItem('queues', JSON.stringify(newQueues));
+    setQueues({...queues, [queueId]: queue});
+    console.log(queueId);
+    localStorage.setItem('queues', JSON.stringify({...queues, [queueId]: queue}));
+    setQueueId(queueId + 1);
+    localStorage.setItem('queueId', queueId + 1);
   }
 
   return (
