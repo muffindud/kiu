@@ -1,7 +1,7 @@
 import React from 'react';
 import './Queue.css'
 
-function Queue({ queue, queueId, setQueueId }) {
+function Queue({ queue, queueId }) {
   return (
     <div className='queue-card-container'>
       <div className='queue-card'>
