@@ -10,10 +10,22 @@ function App() {
 
   const [formState, setFormState] = useState(false);
   const [queues, setQueues] = useState({});
-  const [queueId, setQueueId] = useState(localStorage.getItem('queueId') ? parseInt(localStorage.getItem('queueId')) : 0);
+  const [queueId, setQueueId] = useState(0);
 
   useEffect(() => {
     const savedQueues = JSON.parse(localStorage.getItem('queues'));
+    const savedQueueId = parseInt(localStorage.getItem('queueId'));
+
+    if (savedQueueId) {
+      setQueueId(savedQueueId);
+    } else if (Object.keys(savedQueues).length > 0){
+      setQueueId(Object.keys(savedQueues).length);
+      localStorage.setItem('queueId', Object.keys(savedQueues).length);
+    } else {
+      setQueueId(0);
+      localStorage.setItem('queueId', queueId);
+    }
+
     if (savedQueues) {
       setQueues(savedQueues);
     }
