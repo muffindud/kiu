@@ -1,7 +1,7 @@
 import React from 'react';
 import './Queue.css'
 
-function Queue({ queue, queueId, handleDeleteQueue }) {
+function Queue({ queue, queueId, handleDeleteQueue, forceUpdate }) {
   return (
     <div className='queue-card-container'>
       <div className='queue-card'>
@@ -9,7 +9,7 @@ function Queue({ queue, queueId, handleDeleteQueue }) {
           <h2>{queue.name}</h2>
           <button 
             className='delete-queue-button'
-            onClick={() => handleDeleteQueue(queueId)}
+            onClick={() => {handleDeleteQueue(queueId); forceUpdate({});}}
           >
             Delete
           </button>
