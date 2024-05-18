@@ -18,7 +18,7 @@ function App() {
 
     if (savedQueueId) {
       setQueueId(savedQueueId);
-    } else if (Object.keys(savedQueues).length > 0){
+    } else if (savedQueues && Object.keys(savedQueues).length > 0){
       setQueueId(Object.keys(savedQueues).length);
       localStorage.setItem('queueId', Object.keys(savedQueues).length);
     } else {
@@ -29,7 +29,7 @@ function App() {
     if (savedQueues) {
       setQueues(savedQueues);
     }
-  }, []);
+  }, [queueId]);
 
   const handleAddQueue = (queue) => {
     setQueues({...queues, [queueId]: queue});
