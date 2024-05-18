@@ -26,13 +26,22 @@ function App() {
     localStorage.setItem('queueId', queueId + 1);
   }
 
+  const handleDeleteQueue = (queueId) => {
+    const newQueues = queues;
+    delete newQueues[queueId];
+    setQueues(newQueues);
+    localStorage.setItem('queues', JSON.stringify(newQueues));
+  };
+
   return (
     <ThemeHandlerProvider>
       <Navbar 
         setFormState={setFormState}
       />
       <QueueList 
-        queues={queues}/>
+        queues={queues}
+        handleDeleteQueue={handleDeleteQueue}
+      />
       {formState && <AddQueueForm 
         setFormState={setFormState}
         handleAddQueue={handleAddQueue}

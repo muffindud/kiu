@@ -1,12 +1,18 @@
 import React from 'react';
 import './Queue.css'
 
-function Queue({ queue, queueId }) {
+function Queue({ queue, queueId, handleDeleteQueue }) {
   return (
     <div className='queue-card-container'>
       <div className='queue-card'>
         <div className='queue-card-header'>
           <h2>{queue.name}</h2>
+          <button 
+            className='delete-queue-button'
+            onClick={() => handleDeleteQueue(queueId)}
+          >
+            Delete
+          </button>
         </div>
         <div className='queue-card-body'>
           <p>{queue.description}</p>
