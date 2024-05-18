@@ -21,7 +21,6 @@ function App() {
 
   const handleAddQueue = (queue) => {
     setQueues({...queues, [queueId]: queue});
-    console.log(queueId);
     localStorage.setItem('queues', JSON.stringify({...queues, [queueId]: queue}));
     setQueueId(queueId + 1);
     localStorage.setItem('queueId', queueId + 1);

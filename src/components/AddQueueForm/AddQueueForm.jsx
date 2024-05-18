@@ -7,16 +7,20 @@ function AddQueueForm({ setFormState, handleAddQueue }) {
   const [queueData, setQueueData] = useState({
     name: '',
     description: '',
-    queue_list: []
+    queue_list: [""]
   });
 
-  const handleAddElement = (e) => {
-    setQueueData({...queueData, queue_list: [...queueData.queue_list, e.target.value]});
+  const handleElementChange = (index, value) => {
+    const newQueueList = queueData.queue_list;
+    newQueueList[index] = value;
+    setQueueData({...queueData, queue_list: newQueueList});
   };
 
   const handleRemoveElement = (index) => {
-    const newQueueList = queueData.queue_list.filter((item, i) => i !== index);
+    const newQueueList = queueData.queue_list;
+    newQueueList.splice(index, 1);
     setQueueData({...queueData, queue_list: newQueueList});
+    setElementsCount(elementsCount - 1);
   };
 
   return (
@@ -50,16 +54,17 @@ function AddQueueForm({ setFormState, handleAddQueue }) {
             />
           </div>
 
-          {Array.from({length: elementsCount}, (_, i) => (
-            <div className='form-element' key={i}>
+          {queueData.queue_list.map((element, index) => (
+            <div className='form-element' key={index}>
               <input
                 type='text'
                 required
-                onChange={handleAddElement}
+                value={element}
+                onChange={(e) => handleElementChange(index, e.target.value)}
               />
               <button
                 type='button'
-                onClick={() => handleRemoveElement(i)}
+                onClick={() => handleRemoveElement(index)}
               >
                 Remove
               </button>
@@ -75,7 +80,12 @@ function AddQueueForm({ setFormState, handleAddQueue }) {
             </button>
             <button
               type='button'
-              onClick={() => setElementsCount(elementsCount + 1)}
+              onClick={
+                () => {
+                  setElementsCount(elementsCount + 1); 
+                  setQueueData({...queueData, queue_list: [...queueData.queue_list, ""]})
+                }
+              }
             >
               Add Element
             </button>
