@@ -1,0 +1,41 @@
+.queue-card-container {
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.queue-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    min-height: 300px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0;
+}
+
+.queue-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.delete-queue-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.delete-queue-button:hover {
+    color: #fff;
+    background-color: #555;
+}
+
+.queue-card-list li {
+    display: flex;
+    padding-left: 10px;
+}

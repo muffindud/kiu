@@ -53,6 +53,38 @@ body.dark-theme .form-window {
     justify-content: space-between;
 }
 
+.form-element {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-element button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+
+body.light-theme .form-element button {
+    color: #333;
+}
+
+body.dark-theme .form-element button {
+    color: #fff;
+}
+
+body.light-theme .form-element button:hover {
+    color: #fff;
+    background-color: #555;
+}
+
+body.dark-theme .form-element button:hover {
+    color: #555;
+    background-color: #fff;
+}
+
 .form-buttons button {
     background-color: transparent;
     border: none;

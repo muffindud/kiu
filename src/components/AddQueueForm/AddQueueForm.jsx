@@ -2,11 +2,26 @@ import { useState } from 'react';
 import './AddQueueForm.css'
 
 function AddQueueForm({ setFormState, handleAddQueue }) {
+  const [elementsCount, setElementsCount] = useState(1);
+
   const [queueData, setQueueData] = useState({
     name: '',
     description: '',
-    queue_list: []
+    queue_list: [""]
   });
+
+  const handleElementChange = (index, value) => {
+    const newQueueList = queueData.queue_list;
+    newQueueList[index] = value;
+    setQueueData({...queueData, queue_list: newQueueList});
+  };
+
+  const handleRemoveElement = (index) => {
+    const newQueueList = queueData.queue_list;
+    newQueueList.splice(index, 1);
+    setQueueData({...queueData, queue_list: newQueueList});
+    setElementsCount(elementsCount - 1);
+  };
 
   return (
     <div className='add-queue-form-container'>
@@ -39,12 +54,40 @@ function AddQueueForm({ setFormState, handleAddQueue }) {
             />
           </div>
 
+          {queueData.queue_list.map((element, index) => (
+            <div className='form-element' key={index}>
+              <input
+                type='text'
+                required
+                value={element}
+                onChange={(e) => handleElementChange(index, e.target.value)}
+              />
+              <button
+                type='button'
+                onClick={() => handleRemoveElement(index)}
+              >
+                Remove
+              </button>
+            </div>
+          ))}
+
           <div className='form-buttons'>
             <button 
               type='button'
               onClick={() => setFormState(false)}
             >
               Cancel
+            </button>
+            <button
+              type='button'
+              onClick={
+                () => {
+                  setElementsCount(elementsCount + 1); 
+                  setQueueData({...queueData, queue_list: [...queueData.queue_list, ""]})
+                }
+              }
+            >
+              Add Element
             </button>
             <button 
               type='submit'
