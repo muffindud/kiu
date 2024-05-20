@@ -1,7 +1,19 @@
 import React from 'react';
 import './Queue.css'
+import { api_host } from '../../config';
 
 function Queue({ queue, queueId, handleDeleteQueue, forceUpdate }) {
+  const handleRemoteDeleteQueue = (queueId) => {
+    fetch(api_host + "/queue?id=" + queueId, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
+      }
+    })
+      .catch((error) => console.error('Error:', error))
+  };
+
   return (
     <div className='queue-card-container'>
       <div className='queue-card'>
@@ -9,7 +21,11 @@ function Queue({ queue, queueId, handleDeleteQueue, forceUpdate }) {
           <h2>{queue.name}</h2>
           <button 
             className='delete-queue-button'
-            onClick={() => {handleDeleteQueue(queueId); forceUpdate({});}}
+            onClick={() => {
+              handleDeleteQueue(queueId); 
+              forceUpdate({});
+              handleRemoteDeleteQueue(queueId)
+            }}
           >
             Delete
           </button>
@@ -28,5 +44,6 @@ function Queue({ queue, queueId, handleDeleteQueue, forceUpdate }) {
     </div>
   );
 }
+
 
 export default Queue;
