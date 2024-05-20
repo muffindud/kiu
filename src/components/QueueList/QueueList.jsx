@@ -3,8 +3,6 @@ import './QueueList.css'
 import Queue from '../Queue/Queue';
 
 function QueueList({ queues, handleDeleteQueue }) {
-  const [, forceUpdate] = React.useState();
-
   return (
     <div className='queue-list-container'>
       {Object.keys(queues).map((id) => (
@@ -12,7 +10,6 @@ function QueueList({ queues, handleDeleteQueue }) {
           queue={queues[id]}
           queueId={id}
           handleDeleteQueue={handleDeleteQueue}
-          forceUpdate={forceUpdate}
         />
       ))}
     </div>

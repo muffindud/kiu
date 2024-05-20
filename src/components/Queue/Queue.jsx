@@ -23,7 +23,6 @@ function Queue({ queue, queueId, handleDeleteQueue, forceUpdate }) {
             className='delete-queue-button'
             onClick={() => {
               handleDeleteQueue(queueId); 
-              forceUpdate({});
               handleRemoteDeleteQueue(queueId)
             }}
           >
