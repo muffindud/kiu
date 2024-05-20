@@ -14,25 +14,7 @@ function App() {
   const [queueId, setQueueId] = useState(0);
 
   useEffect(() => {
-    const savedQueues = JSON.parse(localStorage.getItem('queues'));
-    const savedQueueId = parseInt(localStorage.getItem('queueId'));
-    const refreshToken = localStorage.getItem('refreshToken');
-    
-    if (savedQueueId) {
-      setQueueId(savedQueueId);
-    } else if (savedQueues && Object.keys(savedQueues).length > 0){
-      setQueueId(Object.keys(savedQueues).length);
-      localStorage.setItem('queueId', Object.keys(savedQueues).length);
-    } else {
-      setQueueId(0);
-      localStorage.setItem('queueId', queueId);
-    }
-    
-    if (savedQueues) {
-      setQueues(savedQueues);
-    }
-    
-    if (!refreshToken) {
+    if (!sessionStorage.getItem('accessToken') || !localStorage.getItem('refreshToken')){
       fetch(api_host + "/token", {
         method: 'POST',
         headers: {
@@ -45,13 +27,26 @@ function App() {
           localStorage.setItem('refreshToken', data.refresh_token);
           sessionStorage.setItem('accessToken', data.access_token);
         })
-        .catch(err => console.log(err));
+        .then(() => {
+          fetch(api_host + "/queue", {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
+            }})
+            .then(response => response.json())
+            .then(data => {
+              setQueues(data);
+              localStorage.setItem('queues', JSON.stringify(data));
+            }
+          )
+        })
     } else {
       fetch(api_host + "/refresh", {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${refreshToken}`
+          'Authorization': `Bearer ${localStorage.getItem('refreshToken')}`
         }
       })
         .then(response => {
@@ -68,14 +63,58 @@ function App() {
               localStorage.setItem('refreshToken', data.refresh_token);
               sessionStorage.setItem('accessToken', data.access_token);
             })
-            .catch(err => console.log(err));
+            .then(() => {
+              fetch(api_host + "/queue", {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
+                }})
+                .then(response => response.json())
+                .then(data => {
+                  setQueues(data);
+                  localStorage.setItem('queues', JSON.stringify(data));
+                }
+              )
+            })
+            .then(() => {
+              fetch(api_host + "/queue", {
+                method: 'GET',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
+                }})
+                .then(response => response.json())
+                .then(data => {
+                  setQueues(data);
+                  localStorage.setItem('queues', JSON.stringify(data));
+                }
+              )
+            })
           } else if (response.status === 200) {
             sessionStorage.setItem('accessToken', response.json().access_token);
           }
         })
-        .catch(err => console.log(err));
     }
-  }, [api_host, api_pass, queueId]);
+
+    const savedQueues = JSON.parse(localStorage.getItem('queues'));
+    const savedQueueId = parseInt(localStorage.getItem('queueId'));
+    
+    if (savedQueueId) {
+      setQueueId(savedQueueId);
+    } else if (savedQueues && Object.keys(savedQueues).length > 0){
+      setQueueId(Object.keys(savedQueues).length);
+      localStorage.setItem('queueId', Object.keys(savedQueues).length);
+    } else {
+      setQueueId(0);
+      localStorage.setItem('queueId', queueId);
+    }
+    
+    if (savedQueues) {
+      setQueues(savedQueues);
+    }
+    
+  }, [queueId]);
 
   const handleAddQueue = (queue) => {
     setQueues({...queues, [queueId]: queue});
