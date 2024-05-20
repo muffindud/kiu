@@ -150,7 +150,7 @@ function App() {
   }
 
   const handleDeleteQueue = (queueId) => {
-    const newQueues = queues;
+    const newQueues = {...queues};
     delete newQueues[queueId];
     setQueues(newQueues);
     localStorage.setItem('queues', JSON.stringify(newQueues));
