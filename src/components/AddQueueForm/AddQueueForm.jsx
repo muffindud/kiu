@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './AddQueueForm.css'
+import { api_host } from '../../config';
 
 function AddQueueForm({ setFormState, handleAddQueue }) {
   const [elementsCount, setElementsCount] = useState(1);
@@ -23,12 +24,28 @@ function AddQueueForm({ setFormState, handleAddQueue }) {
     setElementsCount(elementsCount - 1);
   };
 
+  const handleRemoteAddQueue = (queueData) => {
+    const queueId = localStorage.getItem('queueId');
+    fetch(api_host + "/queue", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`
+      },
+      body: `{"${queueId}": ${JSON.stringify(queueData)}}`
+    })
+  };      
+
   return (
     <div className='add-queue-form-container'>
       <div className='form-window'>
         <form
           className='add-queue-form'
-          onSubmit={() => {handleAddQueue(queueData); setFormState(false)}}
+          onSubmit={() => {
+            handleAddQueue(queueData); 
+            setFormState(false);
+            handleRemoteAddQueue(queueData);
+          }}
         >
           <div className='form-queue-name'>
             <label>
